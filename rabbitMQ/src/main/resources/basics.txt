@@ -1,0 +1,11 @@
+The producer is the sender of a message.
+
+The consumer is the receiver of a message. A consumer mostly waits to receive messages.
+
+A queue is the name for a mailbox. It lives inside RabbitMQ. Although messages flow through RabbitMQ and your applications, they can be stored only inside a queue. A queue is not bound by any limits, it can store as many messages as you like ‒ it’s essentially an infinite buffer. Many producers can send messages that go to one queue, many consumers can try to receive data from one queue.
+
+An exchange. The core idea in the messaging model in RabbitMQ is that the producer never sends any messages directly to a queue. Instead, the producer can only send messages to an exchange. It is a very simple thing: on one side it receives messages from producers and the other side it pushes them to queues. How it does this is defined by the exchange type. There are a few available: direct, topic, headers and fanout.
+
+A binding tells the exchange to what queue it should send messages to. Bindings can take an extra routing key parameter, the binding key. The meaning of a binding key depends on the exchange type. The fanout exchange, for example, simply ignores its value. A direct exchange a message goes to the queues whose binding key exactly matches the routing key of the message.
+
+Publishing a message in RabbitMQ therefore takes a routing key that an exchange uses to match corresponding queues.
